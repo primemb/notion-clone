@@ -10,7 +10,7 @@ import { useEdgeStore } from "@/lib/edgestore";
 interface EditorProps {
   initialContent?: string;
   editable?: boolean;
-  onChange: (content: string) => void;
+  onChange?: (content: string) => void;
 }
 
 const Editor = ({ initialContent, editable = true, onChange }: EditorProps) => {
@@ -26,7 +26,7 @@ const Editor = ({ initialContent, editable = true, onChange }: EditorProps) => {
     editable,
     initialContent: initialContent ? JSON.parse(initialContent) : undefined,
     onEditorContentChange: (editor) => {
-      onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
+      onChange?.(JSON.stringify(editor.topLevelBlocks, null, 2));
     },
     uploadFile: handleUpload,
   });
